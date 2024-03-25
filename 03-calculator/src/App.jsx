@@ -17,10 +17,8 @@ function App() {
   const [input, setInput] = useState('')
 
   const addInputNumber = (e) => {
-    const value = parseInt(e.target.getAttribute('data-value'))
-    if (!isNaN(value)) {
-      setInput(input + value)
-    }
+    const value = e.target.getAttribute('data-value')
+    setInput(input + value)
   }
 
   const addOperator = (e) => {
@@ -29,7 +27,11 @@ function App() {
   }
 
   const handleResult = () => {
-    setInput(evaluate(input))
+    if (input) {
+      setInput(evaluate(input).toFixed(2))
+    } else {
+      alert('Añade números primero!')
+    }
   }
 
   const handleDelete = () => {
